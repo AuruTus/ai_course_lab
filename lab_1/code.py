@@ -81,8 +81,10 @@ def draw(xset_yset, title, img_location, color):
 
 def main():
     draw(process_data(_range=range(3, 8)), "MSE for different test sizes", "./lab_1/output/problem_1.png", "terrain") # problem 1
-    draw(process_data(None, range(3, 8)), "MSE with no scaler for different test sizes", "./lab_1/output/problem_2_none.png", "ocean") # problem 2
-    draw(process_data(StandardScaler(), range(3, 8)), "MSE with StandardScaler for different test sizes", "./lab_1/output/problem_2.png", "ocean") # problem 2
+    draw(process_data(_range=[3,3.5,4,4.5,5,5.5,6,6.5,7]), "MSE for different test sizes", "./lab_1/output/problem_1_pace.png", "terrain") # problem 1
+    # draw(process_data(None, range(3, 8)), "MSE with no scaler for different test sizes", "./lab_1/output/problem_2_none.png", "ocean") # problem 2
+    draw(process_data(None, _range=[3,3.5,4,4.5,5,5.5,6,6.5,7]), "MSE with no scaler for different test sizes", "./lab_1/output/problem_2_none.png", "ocean") # problem 2
+    draw(process_data(StandardScaler(), _range=[3,3.5,4,4.5,5,5.5,6,6.5,7]), "MSE with StandardScaler for different test sizes", "./lab_1/output/problem_2.png", "ocean") # problem 2
     draw(process_data(ratio=0.5), "MSE for 0.5 test sizes", "./lab_1/output/problem_3.png", "Oranges_r") # problem 3
 
 if __name__ == '__main__':
