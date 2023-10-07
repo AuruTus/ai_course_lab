@@ -19,10 +19,10 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 
 
 def plot_accuracy():
+    plt.figure()
     plt.title("accuracy for different penalties")
     plt.xlabel("penaly value")
     plt.ylabel("accuracy")
-    # plt.axis([0.2, 0.8, 15, 30])
 
     # 创建SVM分类器
     for C in [0.01, 0.02, 0.03, 0.04, 0.05]:
@@ -37,12 +37,13 @@ def plot_accuracy():
         xy = (C, accuracy)
         plt.scatter(xy[0], xy[1], c=[5], cmap="terrain")
         plt.annotate('(%.2f, %.2f)'%xy, xy=xy)
-        # plt.show()
+    plt.legend()
     plt.savefig("./lab_2/output/accuracy.png", dpi=500)
     plt.close('all')
 
 
 def plot_tsne(raw_data, data):
+    plt.figure()
     tsne = TSNE(n_components=2, verbose=1, perplexity=40, n_iter=300)
     data_2d = tsne.fit_transform(data)
     plt.figure(figsize=(16,10))
@@ -59,6 +60,7 @@ def plot_tsne(raw_data, data):
 
 
 def plot_decision_boundary(X_train, y_train):
+    plt.figure()
     # 函数用于绘制SVM决策边界
     def _plot_decision_boundary(X, y, model, title):
         h = .02 # 步长
