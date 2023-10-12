@@ -60,7 +60,6 @@ def plot_tsne(raw_data, data):
 
 
 def plot_decision_boundary(X_train, y_train):
-    plt.figure()
     # 函数用于绘制SVM决策边界
     def _plot_decision_boundary(X, y, model, title):
         h = .02 # 步长
@@ -78,21 +77,23 @@ def plot_decision_boundary(X_train, y_train):
         plt.xlabel('Feature 1')
         plt.ylabel('Feature 2')
 
-    # 创建SVM分类器
-    svm = SVC(kernel='linear', C=1.0, random_state=42)
-    # 拟合模型
-    svm.fit(X_train, y_train)
-    y_pred = svm.predict(X_test)
-    # 计算准确率
-    accuracy = accuracy_score(y_test, y_pred)
-    print(f"Accuracy of the Base SVM: {accuracy}")
+    for i, C in enumerate([0.01, 0.02, 0.03, 0.04, 0.05]):
+        plt.figure()
+        # 创建SVM分类器
+        svm = SVC(kernel='linear', C=C, random_state=42)
+        # 拟合模型
+        svm.fit(X_train, y_train)
+        y_pred = svm.predict(X_test)
+        # 计算准确率
+        accuracy = accuracy_score(y_test, y_pred)
+        print(f"Accuracy of the Base SVM: {accuracy}")
 
-    # 绘制决策边界和数据点
-    _plot_decision_boundary(X_train, y_train, svm, "SVM Decision Boundary (Train)")
-    plt.tight_layout()
-    # plt.show()
-    plt.savefig("./lab_2/output/svm.png")
-    plt.close('all')
+        # 绘制决策边界和数据点
+        _plot_decision_boundary(X_train, y_train, svm, "SVM Decision Boundary (Train)")
+        plt.tight_layout()
+        # plt.show()
+        plt.savefig(f"./lab_2/output/svm_bound_{i}.png")
+        plt.close('all')
 
 def main():
     import sys
